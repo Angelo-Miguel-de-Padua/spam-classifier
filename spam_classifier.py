@@ -22,9 +22,14 @@ X_test_vec = vectorizer.transform(X_test)
 model = MultinomialNB()
 model.fit(X_train_vec, y_train)
 
+y_pred = model.predict(X_test_vec)
 print("✅ Accuracy:", accuracy_score(y_test, y_pred))
 print("\n📋 Report:\n", classification_report(y_test, y_pred))
 
+your_message = ["You won a giveaway!"]
+your_message_vec = vectorizer.transform(your_message)
+prediction = model.predict(your_message_vec)
+print("📨 Your message is:", "SPAM" if prediction[0] == 1 else "HAM")
 
 
 
