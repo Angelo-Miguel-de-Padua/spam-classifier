@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split 
 from sklearn.feature_extraction.text import CountVectorizer   
+from sklearn.naive_bayes import MultinomialNB
 
 # Load the dataset
 df = pd.read_csv("spam.csv", encoding='latin-1')
@@ -16,6 +17,9 @@ X_train, X_test, y_train, y_test = train_test_split(
 vectorizer = CountVectorizer()
 X_train_vec = vectorizer.fit_transform(X_train)
 X_test_vec = vectorizer.transform(X_test)
+
+model = MultinomialNB()
+model.fit(X_train_vec, y_train)
 
 print(df.head())
 print(df['label'].value_counts())
